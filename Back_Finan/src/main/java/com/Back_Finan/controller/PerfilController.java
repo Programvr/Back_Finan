@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://192.168.0.4:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/perfiles")
 public class PerfilController {
 
