@@ -22,4 +22,14 @@ public class PerfilService {
     public List<Perfil> obtenerTodosLosPerfiles() {
         return perfilRepository.findAll();
     }
+
+    
+    public String eliminarPerfil(Long id_perfil) {
+        if (perfilRepository.existsById(id_perfil)) {
+            perfilRepository.deleteById(id_perfil);
+            return "Perfil eliminado";
+        } else {
+            return "Perfil no encontrado";
+        }
+    }
 }

@@ -27,4 +27,11 @@ public class PerfilController {
     public List<Perfil> obtenerPerfiles() {
         return perfilService.obtenerTodosLosPerfiles();
     }
+
+    @DeleteMapping("/{id_perfil}")
+    public ResponseEntity<String> eliminarPerfil(@PathVariable long id_perfil) {
+    String resultado = perfilService.eliminarPerfil(id_perfil);
+    return ResponseEntity.ok(resultado);
+    }
+    
 }
