@@ -1,5 +1,6 @@
 package com.Back_Finan.service;
 
+
 import com.Back_Finan.model.Usuario;
 import com.Back_Finan.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,4 +20,19 @@ public class UsuarioService {
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return usuarioRepository.save(usuario);
     }
-}
+
+    public String login(Usuario usuario) {
+        Usuario usuario1 = usuarioRepository.findByLogin(usuario.getLogin());
+        if (usuario1.getLogin() != null) {
+            // Compara la contraseña ingresada con la contraseña encriptada
+            Boolean Pass_correc = passwordEncoder.matches(usuario.getPassword(),usuario1.getPassword());
+            if(Pass_correc){
+                return "Inicio Correctamente";
+            }
+            else {
+                return "Contraseña incorrecta";
+            }
+        }
+        return "Este Usuario no existe"; // Usuario no encontrado
+    }
+}   
