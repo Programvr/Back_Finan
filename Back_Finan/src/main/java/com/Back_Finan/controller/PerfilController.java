@@ -17,13 +17,13 @@ public class PerfilController {
     @Autowired
     private PerfilService perfilService;
 
-    @PostMapping
+    @PostMapping("/crearPerfil")
     public ResponseEntity<Perfil> crearPerfil(@RequestBody Perfil perfil) {
         Perfil nuevoPerfil = perfilService.crearPerfil(perfil);
         return ResponseEntity.ok(nuevoPerfil);
     }
 
-    @GetMapping
+    @GetMapping("/obtenerPerfiles")
     public List<Perfil> obtenerPerfiles() {
         return perfilService.obtenerTodosLosPerfiles();
     }
