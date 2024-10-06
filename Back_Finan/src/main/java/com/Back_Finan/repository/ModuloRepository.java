@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.Back_Finan.model.Modulo;
 import com.Back_Finan.model.ModuloRolDTO;
-import com.Back_Finan.model.Perfil;
 
 import jakarta.transaction.Transactional;
 
