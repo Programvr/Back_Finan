@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "Usuarios")
 public class Usuario {
 
+    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
@@ -15,7 +17,7 @@ public class Usuario {
     private String password; // Considera usar una clase que maneje la encriptación
 
     @Column(name = "id_perfil")
-    private int id_perfil;
+    private Long id_perfil;
 
     // Getters y setters
     public Long getId_usuario() {
@@ -42,11 +44,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public int getId_perfil() {
+    public Long getId_perfil() {
         return id_perfil;
     }
 
-    public void setId_perfil(int id_perfil) {
+    public void setId_perfil(Long id_perfil) {
         this.id_perfil = id_perfil;
     }
 }
