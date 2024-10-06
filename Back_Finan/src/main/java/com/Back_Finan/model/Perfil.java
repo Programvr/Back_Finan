@@ -1,10 +1,15 @@
 package com.Back_Finan.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Perfiles")
 public class Perfil {
+
+    @OneToMany(mappedBy = "perfil")
+    private List<Rol> roles;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
