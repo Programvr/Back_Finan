@@ -22,10 +22,9 @@ public interface ModuloRepository extends JpaRepository<Modulo, Long> {
            "WHERE r.perfil.id_perfil = :idPerfil")
     List<ModuloRolDTO> findModulosAndRolesByPerfil(@Param("idPerfil") Long idPerfil);
 
-    @Query("SELECT new com.Back_Finan.model.Modulo(m.id_modulo,m.nombre_modulo) " +
-           "FROM Modulo m " +
-           "LEFT JOIN Rol r ON m.id_modulo = r.modulo.id_modulo   " +
-           "WHERE COALESCE(r.perfil.id_perfil,0) <> :idPerfil")
+    @Query("SELECT new com.Back_Finan.model.Modulo(m.id_modulo, m.nombre_modulo) " +
+       "FROM Modulo m " +
+       "WHERE m.id_modulo NOT IN (SELECT r.modulo.id_modulo FROM Rol r WHERE r.perfil.id_perfil = :idPerfil)")
     List<Modulo> findModulosFaltantes(@Param("idPerfil") Long idPerfil);
 
     @Modifying
