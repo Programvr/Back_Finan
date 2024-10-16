@@ -1,7 +1,9 @@
 package com.Back_Finan.service;
 
 import com.Back_Finan.model.Perfil;
+import com.Back_Finan.model.Rol;
 import com.Back_Finan.repository.PerfilRepository;
+import com.Back_Finan.repository.RolRepository;
 
 import java.util.List;
 
@@ -13,6 +15,8 @@ public class PerfilService {
 
     @Autowired
     private PerfilRepository perfilRepository;
+    @Autowired
+    private RolRepository rolRepository;
 
 
     public Perfil crearPerfil(Perfil perfil) {
@@ -25,11 +29,19 @@ public class PerfilService {
 
     
     public String eliminarPerfil(Long id_perfil) {
-        if (perfilRepository.existsById(id_perfil)) {
-            perfilRepository.deleteById(id_perfil);
-            return "Perfil eliminado";
-        } else {
-            return "Perfil no encontrado";
+        // Verificar si el perfil existe
+        Perfil perfil = perfilRepository.findById(id_perfil)
+                .orElseThrow(() -> new RuntimeException("Perfil no encontrado"));
+
+        // Obtener y eliminar los roles asociados
+        List<Rol> roles = rolRepository.findByPerfil(perfil);
+        if (!roles.isEmpty()) {
+            rolRepository.deleteAll(roles);  // Eliminar todos los roles asociados
         }
+
+        // Eliminar el perfil
+        perfilRepository.deleteById(id_perfil);
+
+        return "Perfil y sus roles eliminados correctamente";
     }
 }
