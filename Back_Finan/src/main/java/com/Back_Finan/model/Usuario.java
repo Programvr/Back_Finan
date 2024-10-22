@@ -1,12 +1,12 @@
 package com.Back_Finan.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Usuarios")
 public class Usuario {
-
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,8 +16,11 @@ public class Usuario {
 
     private String password; // Considera usar una clase que maneje la encriptación
 
-    @Column(name = "id_perfil")
-    private Long id_perfil;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_perfil")
+    private Perfil perfil;
+
 
     // Getters y setters
     public Long getId_usuario() {
@@ -43,12 +46,10 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Long getId_perfil() {
-        return id_perfil;
+    public Perfil getPerfil() {
+        return perfil;
     }
-
-    public void setId_perfil(Long id_perfil) {
-        this.id_perfil = id_perfil;
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 }

@@ -21,18 +21,18 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public String login(Usuario usuario) {
+    public Long login(Usuario usuario) {
         Usuario usuario1 = usuarioRepository.findByLogin(usuario.getLogin());
         if (usuario1.getLogin() != null) {
             // Compara la contraseña ingresada con la contraseña encriptada
             Boolean Pass_correc = passwordEncoder.matches(usuario.getPassword(),usuario1.getPassword());
             if(Pass_correc){
-                return "Inicio Correctamente";
+                return usuario1.getId_usuario();
             }
             else {
-                return "Contraseña incorrecta";
+                return 0L;
             }
         }
-        return "Este Usuario no existe"; // Usuario no encontrado
+        return 0L; // Usuario no encontrado
     }
 }   

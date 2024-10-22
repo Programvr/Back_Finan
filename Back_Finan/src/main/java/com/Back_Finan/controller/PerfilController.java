@@ -1,6 +1,8 @@
 package com.Back_Finan.controller;
 
+import com.Back_Finan.model.Modulo;
 import com.Back_Finan.model.Perfil;
+import com.Back_Finan.model.PerfilDTO;
 import com.Back_Finan.service.PerfilService;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class PerfilController {
     }
 
     @GetMapping("/obtenerPerfiles")
-    public List<Perfil> obtenerPerfiles() {
+    public List<PerfilDTO> obtenerPerfiles() {
         return perfilService.obtenerTodosLosPerfiles();
     }
 
@@ -34,4 +36,9 @@ public class PerfilController {
     return ResponseEntity.ok(resultado);
     }
     
+    @GetMapping("/modulosPorUsuario/{usuarioId}")
+    public ResponseEntity<List<Modulo>> obtenerModulosPorUsuario(@PathVariable Long usuarioId) {
+        List<Modulo> modulos = perfilService.obtenerModulosPorUsuario(usuarioId);
+        return ResponseEntity.ok(modulos);
+    }
 }
