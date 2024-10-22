@@ -27,9 +27,9 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody Usuario usuario) {
-    String respuesta = usuarioService.login(usuario);
+    Long respuesta = usuarioService.login(usuario);
     Map<String, String> responseBody = new HashMap<>();
-    responseBody.put("message", respuesta); // "Inicio Correctamente"
+    responseBody.put("message", respuesta.toString()); // "Inicio Correctamente"
     
     return ResponseEntity.ok(responseBody);
 } 

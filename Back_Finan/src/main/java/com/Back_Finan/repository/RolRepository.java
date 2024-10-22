@@ -11,4 +11,6 @@ import com.Back_Finan.model.Rol;
 public interface RolRepository extends JpaRepository<Rol, Long> {
     // Puedes agregar métodos personalizados aquí si es necesario
     List<Rol> findByPerfil(Perfil perfil);
+
+
 }
