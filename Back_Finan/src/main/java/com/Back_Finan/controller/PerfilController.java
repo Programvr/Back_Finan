@@ -2,6 +2,7 @@ package com.Back_Finan.controller;
 
 import com.Back_Finan.model.Modulo;
 import com.Back_Finan.model.Perfil;
+import com.Back_Finan.model.PerfilDTO;
 import com.Back_Finan.service.PerfilService;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class PerfilController {
     }
 
     @GetMapping("/obtenerPerfiles")
-    public List<Perfil> obtenerPerfiles() {
+    public List<PerfilDTO> obtenerPerfiles() {
         return perfilService.obtenerTodosLosPerfiles();
     }
 

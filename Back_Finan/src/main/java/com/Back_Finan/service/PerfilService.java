@@ -2,6 +2,7 @@ package com.Back_Finan.service;
 
 import com.Back_Finan.model.Modulo;
 import com.Back_Finan.model.Perfil;
+import com.Back_Finan.model.PerfilDTO;
 import com.Back_Finan.model.Rol;
 import com.Back_Finan.model.Usuario;
 import com.Back_Finan.repository.PerfilRepository;
@@ -29,8 +30,8 @@ public class PerfilService {
         return perfilRepository.save(perfil);
     }
 
-    public List<Perfil> obtenerTodosLosPerfiles() {
-        return perfilRepository.findAll();
+    public List<PerfilDTO> obtenerTodosLosPerfiles() {
+        return perfilRepository.findPerfiles();
     }
 
     
